@@ -16,7 +16,7 @@
       <input type="text" formControlName="email" class="input login__form-input" placeholder="Введи электронный адрес" >
       <div *ngIf="form.get('email').invalid && form.get('email').touched">
         <span class="error" *ngIf="form.get('email').errors['required']">E-mail является обязательным.</span>
-        <span class="error" *ngIf="form.get('email').errors['email']">Введи действующий E-mail.</span>
+        <span class="error" *ngIf="form.get('email').errors['email']">Введи  E-mail.</span>
       </div>
     </div>
     <div class="login__form-div">
@@ -38,7 +38,7 @@
     </div>
     <div class="login__form-footer">
       <input type="submit" class="login__form-footer-button" [disabled]="form.invalid || form.disabled" value="Зарегистрироваться">
-      <input type="submit" class="login__form-footer-button login__form-footer-button-cancel" value="Отмена">
+      <input type="reset" class="login__form-footer-button login__form-footer-button-cancel" value="Отмена">
     </div>
   </form>
 </div>

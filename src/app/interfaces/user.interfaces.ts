@@ -1,11 +1,10 @@
-export interface User{
+export interface UserRegister{
   email:string;
   firstName:string;
   password:string;
 }
-export interface UserResponseType{
-  language:string;
-  firstName:string;
+
+export interface UserLogin{
   email:string;
-  password:string;
+  password: string;
 }
