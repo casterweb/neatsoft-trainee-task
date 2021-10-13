@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate, CanActivateChild{
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>  {
+    this.authenticationHttp.setAuthTokenStorage()
     if (this.authenticationHttp.isAuthenticated()){
       return of(true)
     } else {

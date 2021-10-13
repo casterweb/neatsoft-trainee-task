@@ -11,16 +11,15 @@ export class TokenInterceptor implements HttpInterceptor{
   }
 
   intercept(req: HttpRequest<any>,
-            next: HttpHandler): Observable<HttpEvent<any>> {
-    const idToken = localStorage.getItem('sign-in')
+            next: HttpHandler)
+            : Observable<HttpEvent<any>> {
 
-
-    if(idToken){
-     const cloned = req.clone({
-        headers:req.headers.set('Authorization',
-          'Bearer ' + idToken)
-      });
-     next.handle(cloned);
+    if(this.authenticationHttp.isAuthenticated()){
+      req = req.clone({
+        setHeaders:{
+          Authorization: this.authenticationHttp.getToken()
+        }
+      })
     }
     return  next.handle(req)
   }

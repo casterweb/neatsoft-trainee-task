@@ -25,11 +25,13 @@ import {TokenInterceptor} from "./classes/token.interceptor";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{
+  providers: [
+    {
     provide:HTTP_INTERCEPTORS,
     multi:true,
     useClass:TokenInterceptor
-  }],
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,12 +16,12 @@ export class AuthenticationHttp {
 
   constructor(private  http:HttpClient) { }
 
-  register(user:UserRegister):Observable<UserRegister> {
+ public register(user:UserRegister):Observable<UserRegister> {
     return this.http.post<UserRegister>('https://dev.api.logtime.me/authentications/sign-up', user)
 
   }
 
-  login (user: UserLogin):Observable<{token:string}> {
+ public login (user: UserLogin):Observable<{token:string}> {
     return this.http.post<{token:string}>('https://dev.api.logtime.me/authentications/sign-in', user)
       .pipe(
         tap(
@@ -32,19 +32,23 @@ export class AuthenticationHttp {
         )
       )
   }
+  public  setAuthTokenStorage(){
+      const potentialToken = localStorage.getItem('sing-in')
+      if(  potentialToken !== null  ){
+        this.setToken(potentialToken)
+      }
+    }
 
 
-  setToken(token:string) {
-
+ public setToken(token:string) {
     this.token = token
   }
 
-  // getToken():string {
-  //   // @ts-ignore
-  //   return this.token
-  // }
+ public getToken():string {
+    return this.token
+  }
 
-  isAuthenticated():boolean{
+ public isAuthenticated():boolean{
     return !!this.token
   }
 

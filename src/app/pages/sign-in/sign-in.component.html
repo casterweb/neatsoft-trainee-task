@@ -1,26 +1,26 @@
-<div class="login__wrapper">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login__form">
-    <div class="login__icons">
-      <img src="./assets/icons/Group%2074.svg" class="login__icon-img login__icon-img-flag" alt="flag">
-      <img src="./assets/icons/image%201.svg" class="login__icon-img login__icon-img-logo" alt="logo">
-      <img src="./assets/icons/Group%2095.svg" class="login__icon-img login__icon-img-bulb" alt="bulb">
-      <img src="./assets/icons/Group%2096.svg" class="login__icon-img login__icon-img-health" alt="health">
-      <img src="./assets/icons/Group%2097.svg" class="login__icon-img login__icon-img-people" alt="people">
-      <img src="./assets/icons/трофей.svg" class="login__icon-img login__icon-img-trophy" alt="trophy">
-      <img src="./assets/icons/эмоции.svg" class="login__icon-img login__icon-img-lightning" alt="lightning">
-      <img src="./assets/icons/Vector.svg" class="login__icon-img login__icon-img-cross" alt="cross">
+<div class="signIn__wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="signIn__form">
+    <div class="signIn__icons">
+      <img src="./assets/icons/Group%2074.svg" class="signIn__icon-img signIn__icon-img-flag" alt="flag">
+      <img src="./assets/icons/image%201.svg" class="signIn__icon-img signIn__icon-img-logo" alt="logo">
+      <img src="./assets/icons/Group%2095.svg" class="signIn__icon-img signIn__icon-img-bulb" alt="bulb">
+      <img src="./assets/icons/Group%2096.svg" class="signIn__icon-img signIn__icon-img-health" alt="health">
+      <img src="./assets/icons/Group%2097.svg" class="signIn__icon-img signIn__icon-img-people" alt="people">
+      <img src="./assets/icons/трофей.svg" class="signIn__icon-img signIn__icon-img-trophy" alt="trophy">
+      <img src="./assets/icons/эмоции.svg" class="signIn__icon-img signIn__icon-img-lightning" alt="lightning">
+      <img src="./assets/icons/Vector.svg" class="signIn__icon-img signIn__icon-img-cross" alt="cross">
     </div>
-    <h1 class="login__form-title">Вход</h1>
-    <h4 class="login__form-title">Введите имя и пароль,чтобы продолжить</h4>
-    <div class="login__form-div">
-      <input type="text" formControlName="email" class="input login__form-input" placeholder="Почта" >
+    <h1 class="signIn__form-title">Вход</h1>
+    <h4 class="signIn__form-title">Введите имя и пароль,чтобы продолжить</h4>
+    <div class="signIn__form-div">
+      <input type="text" formControlName="email" class="input signIn__form-input" placeholder="Почта" >
       <div *ngIf="form.get('email').invalid && form.get('email').touched">
         <span class="error" *ngIf="form.get('email').errors['required']">E-mail является обязательным.</span>
         <span class="error" *ngIf="form.get('email').errors['email']">Введи действующий E-mail.</span>
       </div>
     </div>
-    <div class="login__form-div">
-      <input type="password" formControlName="password" class="input login__form-input" placeholder="Пароль" >
+    <div class="signIn__form-div">
+      <input type="password" formControlName="password" class="input signIn__form-input" placeholder="Пароль" >
       <div *ngIf="form.get('password').invalid && form.get('password').touched">
         <span class="error" *ngIf="form.get('password').errors['required']">Введи пароль.</span>
         <span class="error" *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
@@ -28,9 +28,9 @@
       </div>
 
     </div>
-    <div class="login__form-footer">
-      <input type="submit" class="login__form-footer-button" [disabled]="form.invalid || form.disabled" value="Войти">
-      <input type="reset" class="login__form-footer-button login__form-footer-button-cancel" value="Отмена">
+    <div class="signIn__form-footer">
+      <input type="submit" class="signIn__form-footer-button" [disabled]="form.invalid || form.disabled" value="Войти">
+      <input type="reset" class="signIn__form-footer-button signIn__form-footer-button-cancel" value="Отмена">
     </div>
   </form>
 </div>
