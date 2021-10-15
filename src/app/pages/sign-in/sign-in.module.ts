@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SignInRoutingModule } from './sign-in-routing.module';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -11,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     SignInRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class SignInModule { }
+export class SignInModule {}

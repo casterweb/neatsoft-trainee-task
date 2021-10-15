@@ -13,14 +13,14 @@
     <h1 class="login__form-title">Заверши регистрацию</h1>
     <h4 class="login__form-title">Введите имя и пароль,чтобы продолжить</h4>
     <div class="login__form-div">
-      <input type="text" formControlName="email" class="input login__form-input" placeholder="Введи электронный адрес" >
+      <input type="text" formControlName="email" class="input login__form-input" placeholder="Введи электронный адрес">
       <div *ngIf="form.get('email').invalid && form.get('email').touched">
         <span class="error" *ngIf="form.get('email').errors['required']">E-mail является обязательным.</span>
         <span class="error" *ngIf="form.get('email').errors['email']">Введи  E-mail.</span>
       </div>
     </div>
     <div class="login__form-div">
-      <input type="text" formControlName="firstName" class="input login__form-input" placeholder="Твоё имя" >
+      <input type="text" formControlName="firstName" class="input login__form-input" placeholder="Твоё имя">
       <div *ngIf="form.get('firstName').invalid && form.get('firstName').touched">
         <span class="error" *ngIf="form.get('firstName').errors['required']">Введи имя.</span>
         <span class="error" *ngIf="form.get('firstName').errors['pattern']">Введи корректное имя.</span>
@@ -28,16 +28,19 @@
 
     </div>
     <div class="login__form-div">
-      <input type="password" formControlName="password" class="input login__form-input" placeholder="Придумай пароль" >
+      <input type="password" formControlName="password" class="input login__form-input" placeholder="Придумай пароль">
       <div *ngIf="form.get('password').invalid && form.get('password').touched">
         <span class="error" *ngIf="form.get('password').errors['required']">Введи пароль.</span>
-        <span class="error" *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
-          Пароль должен быть больше {{form.get('password').errors['minlength']['requiredLength']}} символов. Сейчас {{form.get('password').errors['minlength']['actualLength']}} символов.</span>
+        <span class="error"
+              *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+          Пароль должен быть больше {{form.get('password').errors['minlength']['requiredLength']}}
+          символов. Сейчас {{form.get('password').errors['minlength']['actualLength']}} символов.</span>
       </div>
 
     </div>
     <div class="login__form-footer">
-      <input type="submit" class="login__form-footer-button" [disabled]="form.invalid || form.disabled" value="Зарегистрироваться">
+      <input type="submit" class="login__form-footer-button" [disabled]="form.invalid || form.disabled"
+             value="Зарегистрироваться">
       <input type="reset" class="login__form-footer-button login__form-footer-button-cancel" value="Отмена">
     </div>
   </form>
