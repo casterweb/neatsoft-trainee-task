@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthenticationHttp {
-  private token: any = null;
+  private token: string = null;
 
   constructor(private http: HttpClient) {}
 
@@ -63,9 +63,4 @@ export class AuthenticationHttp {
   isAuthenticated(): boolean {
     return !!this.token;
   }
-
-  // logout() {
-  //   this.setToken (null)
-  //   localStorage.clear()
-  // }
 }

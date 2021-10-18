@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  form: any;
+  form: FormGroup;
   aSub: Subscription | any;
 
   constructor(
