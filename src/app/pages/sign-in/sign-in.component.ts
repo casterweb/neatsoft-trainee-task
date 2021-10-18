@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationHttp } from '../../services/authentication-http.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +15,8 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationHttp: AuthenticationHttp,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +26,14 @@ export class SignInComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(6),
       ]),
+    });
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['registered']) {
+        //Теперь вы можете войти в систему используя свои данные
+      } else if (params['accessDenied']) {
+        //Для начало авторизуйтесь в системе
+      }
     });
   }
 

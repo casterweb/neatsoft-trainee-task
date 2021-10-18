@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import {
   ResponseUser,
+  UserIdentity,
   UserLogin,
   UserRegister,
 } from '../interfaces/user.interfaces';
@@ -14,6 +15,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthenticationHttp {
   private token: string = null;
+  private user: Observable<UserIdentity>;
 
   constructor(private http: HttpClient) {}
 

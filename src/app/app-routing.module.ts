@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/profile/profile.module').then((m) => m.ProfileModule),
   },
+  {
+    path: Route.notes,
+    loadChildren: () =>
+      import('./pages/notes/notes.module').then((m) => m.NotesModule),
+  },
 ];
 
 @NgModule({
@@ -25,4 +30,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
