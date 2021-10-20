@@ -1,68 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {
-  ResponseUser,
-  UserIdentity,
-  UserLogin,
-  UserRegister,
-} from '../interfaces/user.interfaces';
+import { UserIdentity } from '../interfaces/userIdentity.interfaces';
+
+import { SignIn } from '../interfaces/signIn.interface';
+import { SignUp } from '../interfaces/signUp.intercase';
+
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationHttp {
-  private token: string = null;
-  private user: Observable<UserIdentity>;
-
   constructor(private http: HttpClient) {}
 
-  register(user: UserRegister): Observable<ResponseUser> {
-    return this.http.post<ResponseUser>(
-      'https://dev.api.logtime.me/authentications/sign-up',
+  register(user: SignUp): Observable<UserIdentity> {
+    return this.http.post<UserIdentity>(
+      `${environment.LogTimeApi}/authentications/sign-up`,
       user
     );
   }
 
-  login(user: UserLogin): Observable<{ token: string }> {
-    return this.http
-      .post<{ token: string }>(
-        'https://dev.api.logtime.me/authentications/sign-in',
-        user
-      )
-      .pipe(
-        tap(({ token }) => {
-          localStorage.setItem('sing-in', token);
-          this.setToken(token);
-        })
-      );
-  }
-
-  getUser(): Observable<ResponseUser> {
-    return this.http.get<ResponseUser>(
-      'https://dev.api.logtime.me/authentications/get-user?access-token=' +
-        this.getToken()
+  login(user: SignIn): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(
+      `${environment.LogTimeApi}/authentications/sign-in`,
+      user
     );
   }
 
-  setAuthTokenStorage() {
-    const potentialToken = localStorage.getItem('sing-in');
-    if (potentialToken !== null) {
-      this.setToken(potentialToken);
-    }
-  }
-
-  setToken(token: string) {
-    this.token = token;
-  }
-
-  getToken(): string {
-    return this.token;
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.token;
+  getUser(): Observable<UserIdentity> {
+    return this.http.get<UserIdentity>(
+      `${environment.LogTimeApi}/authentications/get-user`
+    );
   }
 }

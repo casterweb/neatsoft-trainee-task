@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteService } from '../../services/note.service';
-import { UserNotes } from '../../interfaces/user.interfaces';
+import { NoteHttpService } from '../../services/note-http.service';
+import { Note } from '../../interfaces/Note.interface';
+
 import { Subscription } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CategoriesHttpService } from '../../services/categories-http.service';
+import { Categories } from '../../interfaces/categories.interface';
 
 @Component({
   selector: 'app-notes',
@@ -9,22 +13,44 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./notes.component.scss'],
 })
 export class NotesComponent implements OnInit {
-  response: UserNotes;
   subscriptions$ = new Subscription();
-  responses: UserNotes[] = [];
+  responses: Note[];
+  categories: Categories[];
+  form: FormGroup;
 
-  constructor(private noteService: NoteService) {}
+  constructor(
+    private noteHttpService: NoteHttpService,
+    private categoriesHttpService: CategoriesHttpService
+  ) {}
 
   ngOnInit() {
     this.subscriptions$.add(
-      this.noteService.getAllNotes().subscribe((response) => {
-        console.log(response);
-        this.response = response;
-      })
+      this.noteHttpService
+        .getAllNotes()
+        .subscribe((response) => (this.responses = response))
     );
+    this.categoriesHttpService
+      .getAllCategory()
+      .subscribe((category) => (this.categories = category));
+
+    this.form = new FormGroup({
+      note: new FormControl(null),
+      day: new FormControl(null),
+      year: new FormControl(null),
+      month: new FormControl(null),
+      categoryId: new FormControl(null),
+      isTask: new FormControl(null),
+    });
   }
 
   ngOnDestroy() {
     this.subscriptions$.unsubscribe();
+  }
+
+  onSubmit() {
+    this.subscriptions$.add(
+      this.noteHttpService.createNote(this.form.getRawValue()).subscribe()
+    );
+    this.form.reset();
   }
 }

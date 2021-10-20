@@ -1,14 +1,54 @@
-<div  *ngFor="let response of responses">
-  <p>Id : {{response.id}}</p>
-  <p>Note : {{response.note}}</p>
-  <p>  categoryId: {{response.categoryId}}</p>
-  <p> targetId: {{response.targetId}}</p>
-  <p> questionOfDayId:{{response.questionOfDayId}}</p>
-  <p> targetProgress: {{response.targetProgress}}</p>
-  <p> day:{{response.day}}</p>
-  <p> month:{{response.month}}</p>
-  <p> year: {{response.year}}</p>
-  <p> createdAt:{{response.createdAt}}</p>
-  <p> order:{{response.order}}</p>
+<div class="note__wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="note__form">
 
+    <h1 class="note__form-title">Введи данные</h1>
+
+    <div class="note__form-div">
+      <input type="text" formControlName="note" class="input note__form-input" placeholder="Название заметки">
+    </div>
+
+    <div class="note__form-div">
+      <input type="text" formControlName="month" class="input note__form-input" placeholder="Введи месяц">
+    </div>
+
+    <div class="note__form-div">
+      <input type="text" formControlName="day" class="input note__form-input" placeholder="Введи день">
+    </div>
+
+    <div class="note__form-div">
+      <input type="text" formControlName="year" class="input note__form-input" placeholder="Введи год">
+    </div>
+
+    <div class="note__form-div">
+
+      <div>
+        <select formControlName="categoryId">
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <input type="checkbox" id="isTask" formControlName="isTask" class="input note__form-input-checkbox">
+      <label for="isTask">Задача/заметка</label>
+    </div>
+
+    <div class="note__form-footer">
+      <input type="submit" class="note__form-footer-button"
+             value="Отправить">
+    </div>
+  </form>
+  <table>
+    <tr>
+      <th>Note</th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+    </tr>
+    <tr *ngFor="let response of responses">
+      <td>{{response.note}}</td>
+      <td>{{response.day}}</td>
+      <td>{{response.month}}</td>
+      <td>{{response.year}}</td>
+    </tr>
+  </table>
 </div>

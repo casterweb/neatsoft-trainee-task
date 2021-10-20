@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationHttp } from '../../services/authentication-http.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  aSub: Subscription | any;
+  subscriptions$ = new Subscription();
 
   constructor(
-    private authenticationHttp: AuthenticationHttp,
+    private authenticationService: AuthenticationService,
     private router: Router
   ) {}
 
@@ -33,24 +34,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.aSub) {
-      this.aSub.unsubscribe();
-    }
+    this.subscriptions$.unsubscribe();
   }
 
   onSubmit() {
     this.form.disable();
-    this.aSub = this.authenticationHttp.register(this.form.value).subscribe(
-      () => {
-        this.router.navigate(['/signIn'], {
-          queryParams: {
-            registered: true,
-          },
-        });
-      },
-      (error) => {
-        this.form.enable();
-      }
+    this.subscriptions$.add(
+      this.authenticationService.register(this.form.value).subscribe(
+        () => {
+          this.router.navigate(['/signIn'], {
+            queryParams: {
+              registered: true,
+            },
+          });
+        },
+        (error) => {
+          this.form.enable();
+        }
+      )
     );
   }
 }

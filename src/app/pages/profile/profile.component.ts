@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationHttp } from '../../services/authentication-http.service';
-import { ResponseUser } from '../../interfaces/user.interfaces';
+import { UserIdentity } from '../../interfaces/userIdentity.interfaces';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,20 +9,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  response: ResponseUser;
-  aSub: Subscription;
+  response: UserIdentity;
+  subscriptions$ = new Subscription();
 
   constructor(private authenticationHttp: AuthenticationHttp) {}
 
   ngOnInit(): void {
-    this.aSub = this.authenticationHttp.getUser().subscribe((response) => {
-      this.response = response;
-    });
+    this.subscriptions$.add(
+      this.authenticationHttp.getUser().subscribe((response) => {
+        this.response = response;
+      })
+    );
   }
 
   ngOnDestroy() {
-    if (this.aSub) {
-      this.aSub.unsubscribe();
-    }
+    this.subscriptions$.unsubscribe();
   }
 }
