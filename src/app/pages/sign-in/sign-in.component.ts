@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationHttp } from '../../services/authentication-http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -21,14 +20,16 @@ export class SignInComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-    });
+    this.createForm();
 
+    this.subscribeRoute();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
+  }
+
+  private subscribeRoute() {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
         //Теперь вы можете войти в систему используя свои данные
@@ -38,8 +39,14 @@ export class SignInComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subscriptions$.unsubscribe();
+  private createForm() {
+    this.form = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    });
   }
 
   onSubmit() {

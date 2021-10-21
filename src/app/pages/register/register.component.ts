@@ -20,6 +20,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
+  }
+
+  private createForm() {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       firstName: new FormControl(null, [
@@ -31,10 +39,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         Validators.minLength(6),
       ]),
     });
-  }
-
-  ngOnDestroy() {
-    this.subscriptions$.unsubscribe();
   }
 
   onSubmit() {

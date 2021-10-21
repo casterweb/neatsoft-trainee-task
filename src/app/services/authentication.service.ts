@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationHttp } from './authentication-http.service';
 
-import { SignIn } from '../interfaces/signIn.interface';
-import { SignUp } from '../interfaces/signUp.intercase';
+import { SignIn } from '../interfaces/sign-in.interface';
+import { SignUp } from '../interfaces/sign-up.intercase';
 import { tap } from 'rxjs/operators';
 
 @Injectable({

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { UserIdentity } from '../interfaces/userIdentity.interfaces';
+import { UserIdentity } from '../interfaces/user-identity.interfaces';
 
-import { SignIn } from '../interfaces/signIn.interface';
-import { SignUp } from '../interfaces/signUp.intercase';
+import { SignIn } from '../interfaces/sign-in.interface';
+import { SignUp } from '../interfaces/sign-up.intercase';
 
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
