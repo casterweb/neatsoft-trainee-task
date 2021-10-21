@@ -1,14 +1,15 @@
 @import "src/app/styles/variables";
 
-.input{
-    width: 100px;
-    height: 40px;
-    border: 1px solid $border-color;
-    border-radius: .5rem;
-    background: none;
-    font-size: 10px;
+.input {
+  width: 100px;
+  height: 40px;
+  border: 1px solid $border-color;
+  border-radius: .5rem;
+  background: none;
+  font-size: 10px;
+
   &:focus-visible {
     border: 1.5px solid $border-color-focus;
     outline: none;
   }
-  }
+}

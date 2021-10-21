@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {Route} from "./constants/route-constant";
-
-
+import { Route } from './constants/route-constant';
 
 const routes: Routes = [
   {
@@ -13,19 +11,22 @@ const routes: Routes = [
   {
     path: Route.signIn,
     loadChildren: () =>
-      import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule)
+      import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
   {
     path: Route.profile,
     loadChildren: () =>
-      import('./pages/profile/profile.module').then((m) => m.ProfileModule)
-  }
-
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+  },
+  {
+    path: Route.notes,
+    loadChildren: () =>
+      import('./pages/notes/notes.module').then((m) => m.NotesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}

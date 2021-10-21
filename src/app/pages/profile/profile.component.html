@@ -1,1 +1,5 @@
-<p>profile works!</p>
+<div *ngIf="response">
+  <p>First name : {{response.firstName}}</p>
+  <p>Email : {{response.email}}</p>
+</div>
+<button routerLink="/notes">Notes</button>

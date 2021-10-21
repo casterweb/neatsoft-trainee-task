@@ -2,7 +2,7 @@
 @import "src/app/styles/wrapper";
 
 
-.signIn {
+.note {
   &__wrapper {
     margin: 0;
     padding: 0;
@@ -38,6 +38,13 @@
     font-size: 14px;
   }
 
+  &__form-input-checkbox {
+    position: relative;
+    width: 78px;
+    left: 197px;
+    top: 10px;
+  }
+
   &__form-footer-button {
     display: block;
     margin-top: 25px;
@@ -53,74 +60,34 @@
     cursor: pointer;
   }
 
-  &__form-footer-button:disabled {
-    background-color: grey;
-  }
-
-  &__form-footer-button-cancel {
-    display: block;
-    margin-top: 10px;
-    margin-left: -5px;
+  &__refresh-footer-button {
+    position: relative;
+    left: -401px;
+    top: 273px;
     width: 295px;
-    padding: .75rem 9rem;
+    padding: .75rem 2rem;
     outline: none;
     border: none;
-    background-color: #fff;
-    color: #000;
+    background-color: $first-color;
+    color: #fff;
     font-size: $normal-font-size;
     border-radius: .5rem;
     cursor: pointer;
   }
+}
 
-  &__icon-img {
-    &-logo {
-      position: relative;
-      left: 55px;
-      top: 22px;
-    }
-
-    &-flag {
-      position: relative;
-      left: 268px;
-      top: 66px;
-    }
-
-    &-bulb {
-      position: relative;
-      left: 251px;
-      top: 110px;
-    }
-
-    &-health {
-      position: relative;
-      left: 168px;
-      top: -73px;
-    }
-
-    &-people {
-      position: relative;
-      top: 100px;
-      left: -332px;
-    }
-
-    &-trophy {
-      position: relative;
-      left: -65px;
-      top: -162px;
-    }
-
-    &-lightning {
-      position: relative;
-      left: -65px;
-      top: -22px;
-    }
-
-    &-cross {
-      position: relative;
-      left: 84px;
-      top: -81px;
-    }
-  }
+label {
+  position: relative;
+  top: -5px;
 }
 
 
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  position: relative;
+  left: 75px;
+  width: 300px;
+}

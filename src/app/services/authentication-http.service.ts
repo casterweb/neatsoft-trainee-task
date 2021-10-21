@@ -1,56 +1,37 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
-import {UserLogin, UserRegister} from "../interfaces/user.interfaces";
-import {Observable} from "rxjs";
-import {tap} from'rxjs/operators'
+import { UserIdentity } from '../interfaces/user-identity.interfaces';
+
+import { SignIn } from '../interfaces/sign-in.interface';
+import { SignUp } from '../interfaces/sign-up.intercase';
+
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationHttp {
+  constructor(private http: HttpClient) {}
 
- private token:any = null
-
-
-
-
-  constructor(private  http:HttpClient) { }
-
-  register(user:UserRegister):Observable<UserRegister> {
-    return this.http.post<UserRegister>('https://dev.api.logtime.me/authentications/sign-up', user)
-
+  register(user: SignUp): Observable<UserIdentity> {
+    return this.http.post<UserIdentity>(
+      `${environment.LogTimeApi}/authentications/sign-up`,
+      user
+    );
   }
 
-  login (user: UserLogin):Observable<{token:string}> {
-    return this.http.post<{token:string}>('https://dev.api.logtime.me/authentications/sign-in', user)
-      .pipe(
-        tap(
-          ({token})=>{
-            localStorage.setItem('sing-in',token)
-            this.setToken(token)
-          }
-        )
-      )
+  login(user: SignIn): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(
+      `${environment.LogTimeApi}/authentications/sign-in`,
+      user
+    );
   }
 
-
-  setToken(token:string) {
-
-    this.token = token
+  getUser(): Observable<UserIdentity> {
+    return this.http.get<UserIdentity>(
+      `${environment.LogTimeApi}/authentications/get-user`
+    );
   }
-
-  // getToken():string {
-  //   // @ts-ignore
-  //   return this.token
-  // }
-
-  isAuthenticated():boolean{
-    return !!this.token
-  }
-
-  // logout() {
-  //   this.setToken (null)
-  //   localStorage.clear()
-  // }
 }
-
