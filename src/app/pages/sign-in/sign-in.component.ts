@@ -21,22 +21,10 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createForm();
-
-    this.subscribeRoute();
   }
 
   ngOnDestroy() {
     this.subscriptions$.unsubscribe();
-  }
-
-  private subscribeRoute() {
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['registered']) {
-        //Теперь вы можете войти в систему используя свои данные
-      } else if (params['accessDenied']) {
-        //Для начало авторизуйтесь в системе
-      }
-    });
   }
 
   private createForm() {
